@@ -1,22 +1,23 @@
-document.getElementById('signup-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting
 
-    // Get the selected date of birth
-    const dobInput = document.getElementById('dob');
-    const dob = new Date(dobInput.value);
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getAuth, createUser } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Calculate the age
-    const today = new Date();
-    const age = today.getFullYear() - dob.getFullYear();
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBaL8PixyXtEqXhQvyaA7G6Iz5Io0iAJnc",
+    authDomain: "sparkdate-2c844.firebaseapp.com",
+    projectId: "sparkdate-2c844",
+    storageBucket: "sparkdate-2c844.appspot.com",
+    messagingSenderId: "199201599768",
+    appId: "1:199201599768:web:a55800d0577e8b637c2e6d",
+    measurementId: "G-LG6CY7L906"
+  };
 
-    // Check if the user is under 18
-    if (age < 18) {
-        const ageError = document.getElementById('age-error');
-        ageError.textContent = "You must be 18 or older to sign up for SparkDate.";
-        dobInput.focus(); // Set focus to the date of birth field
-        return false; // Prevent form submission
-    }
-
-    // If the user is 18 or older, the form will submit
-    this.submit();
-});
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
